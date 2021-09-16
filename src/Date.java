@@ -2,7 +2,7 @@
  * @author Wesam Saleh
  */
 
-public class Date {
+public class Date implements Comparable<Date>{
     private int year;
     private int month;
     private int day;
@@ -37,6 +37,7 @@ public class Date {
         return false;
     }
 
+    @Override
     /**
      * compares this Date to the date passed in
      * @param date - the date passed in
