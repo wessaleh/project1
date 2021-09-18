@@ -78,7 +78,17 @@ public class Date implements Comparable<Date>{
      * date passed in>
      */
     public int compareTo(Date date) {
-        return 0;
+
+        if(this.year-date.year != 0){ // check year first
+            return this.year-date.year;
+        }else if(this.month-date.month != 0){ // then check month
+            return this.month-date.month;
+        }else if(this.day-date.day != 0){ // then check day
+            return this.day-date.day;
+        }else {
+            return 0; // otherwise the two dates are equal
+        }
+
     }
 
     /**
