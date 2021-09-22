@@ -10,7 +10,7 @@ public class Collection {
      * Constructor for collection class
      * Initially, albums array has capacity for 10 albums
      */
-    public Collection(){
+    public Collection() {
         albums = new Album[10];
         numAlbums = 0;
     }
@@ -41,6 +41,64 @@ public class Collection {
         }
 
         albums = newAlbumsList;
+    }
+
+    /**
+     * Sorts albums list by release date
+     * @return albums list sorted by release date
+     */
+    private Album[] sortByReleaseDate() {
+        Album[] sortedAlbum = new Album[albums.length];
+
+        int earliestAlbumIndex;
+        int sortedAlbumIndex = 0;
+
+        for(int i = 0; i < albums.length - 1; i++){
+            earliestAlbumIndex = i;
+
+            for(int j = i+1; j < albums.length; j++){
+                Date currentReleaseDate = albums[j].getReleaseDate();
+                Date earliestReleaseDate = albums[earliestAlbumIndex].getReleaseDate();
+
+                if(currentReleaseDate.compareTo(earliestReleaseDate) < 0){
+                    earliestAlbumIndex = j;
+                }
+            }
+
+            sortedAlbum[sortedAlbumIndex] = albums[earliestAlbumIndex];
+            sortedAlbumIndex++;
+        }
+
+        return sortedAlbum;
+    }
+
+    /**
+     * Sorts albums list by genre
+     * @return albums list sorted by genre
+     */
+    private Album[] sortByGenre(){
+        Album[] sortedAlbum = new Album[albums.length];
+
+        int minimumAlbumIndex;
+        int sortedAlbumIndex = 0;
+
+        for(int i = 0; i < albums.length - 1; i++){
+            minimumAlbumIndex = i;
+
+            for(int j = i+1; j < albums.length; j++){
+                Genre currentAlbumGenre = albums[j].getGenre();
+                Genre minimumGenre = albums[minimumAlbumIndex].getGenre();
+
+                if(currentAlbumGenre.compareTo(minimumGenre) < 0){
+                    minimumAlbumIndex = j;
+                }
+            }
+
+            sortedAlbum[sortedAlbumIndex] = albums[minimumAlbumIndex];
+            sortedAlbumIndex++;
+        }
+
+        return sortedAlbum;
     }
 
     /**
@@ -150,13 +208,41 @@ public class Collection {
      * prints the list of albums sorted by release date
      */
     public void printByReleaseDate() {
-        return;
+        Album[] sortedListByReleaseDate = this.sortByReleaseDate();
+
+        System.out.print("Collection by Release Date: [ ");
+
+        for(int i = 0; i < numAlbums; i++){
+            System.out.print(sortedListByReleaseDate[i]);
+            int lastAlbumIndex = numAlbums - 1;
+            boolean isLastAlbum = i == lastAlbumIndex;
+
+            if(!isLastAlbum){
+                System.out.print(" , ");
+            }
+        }
+
+        System.out.println(" ]");
     }
 
     /**
      * prints the list of albums sorted by Genre
      */
     public void printByGenre() {
-        return;
+        Album[] sortedListByGenre = this.sortByGenre();
+
+        System.out.print("Collection by Genre: [ ");
+
+        for(int i = 0; i < numAlbums; i++){
+            System.out.print(sortedListByGenre[i]);
+            int lastAlbumIndex = numAlbums - 1;
+            boolean isLastAlbum = i == lastAlbumIndex;
+
+            if(!isLastAlbum){
+                System.out.print(" , ");
+            }
+        }
+
+        System.out.println(" ]");
     }
 }
