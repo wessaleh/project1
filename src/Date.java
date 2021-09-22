@@ -58,7 +58,7 @@ public class Date implements Comparable<Date>{
     private static String convertMonthCodeToNumber(String month){
         String monthNumber = "";
 
-        for(int i=0; i<MONTHS.length; i++){
+        for(int i = 0; i < MONTHS.length; i++){
             if(month.equals(MONTHS[i])){
                 monthNumber = (i+1)/10 + "" + (i+1)%10; // to ensure single digits have a 0 in front
             }
@@ -77,23 +77,20 @@ public class Date implements Comparable<Date>{
         Date currentDate = new Date();
 
         // validating year
-        if(this.year < THE_EIGHTIES || this.year > currentDate.year){
+        if(this.year < THE_EIGHTIES || this.year > currentDate.year)
             return false;
-        }
 
         // validating month
-        if(this.month < MINIMUM_MONTH_VALUE || this.month > NUMBER_OF_MONTHS_IN_A_YEAR){
+        if(this.month < MINIMUM_MONTH_VALUE || this.month > NUMBER_OF_MONTHS_IN_A_YEAR)
             return false;
-        }
 
         // validating day
         int monthIndex = month-1;
         int numDaysInThisMonth = isLeapYear(this.year) ? DAYS_OF_MONTH_IN_LEAP_YEAR[monthIndex] :
                 DAYS_OF_MONTH[monthIndex];
 
-        if(this.day < MINIMUM_DAY_VALUE || this.day > numDaysInThisMonth){
+        if(this.day < MINIMUM_DAY_VALUE || this.day > numDaysInThisMonth)
             return false;
-        }
 
         return true;
     }
@@ -125,12 +122,12 @@ public class Date implements Comparable<Date>{
      * date passed in>
      */
     public int compareTo(Date date) {
-        if(this.year-date.year != 0){ // check year first
-            return this.year-date.year;
-        }else if(this.month-date.month != 0){ // then check month
-            return this.month-date.month;
-        }else if(this.day-date.day != 0){ // then check day
-            return this.day-date.day;
+        if(this.year - date.year != 0){ // check year first
+            return this.year - date.year;
+        }else if(this.month - date.month != 0){ // then check month
+            return this.month - date.month;
+        }else if(this.day - date.day != 0){ // then check day
+            return this.day - date.day;
         }else {
             return 0; // otherwise, the two dates are equal
         }

@@ -9,6 +9,21 @@ public class Album {
     private Date releaseDate;
     private boolean isAvailable;
 
+    /**
+     * Getter for isAvailable
+     * @return the availability of this album
+     */
+    public boolean getAvailability(){
+        return isAvailable;
+    }
+
+    /**
+     * Setter for isAvailable
+     * @param available - the value to set
+     */
+    public void setAvailability(boolean available){
+        isAvailable = available;
+    }
 
     @Override
     /**
