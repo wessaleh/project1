@@ -57,4 +57,12 @@ public class Album {
     public String toString(){
         return null;
     }
+
+    /**
+     * test bed main
+     * @param args - command line arguments
+     */
+    public static void main(String[] args) {
+
+    }
 }

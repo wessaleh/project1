@@ -100,7 +100,7 @@ public class Date implements Comparable<Date>{
      * @param year - the year
      * @return - true if the year is a leap year, false if not
      */
-    private static boolean isLeapYear(int year){
+    private static boolean isLeapYear(int year) {
         boolean isDivisibleByFour = year % QUADRENNIAL == 0;
         boolean isDivisibleBy100 = year % CENTENNIAL == 0;
         boolean isDivisibleBy400 = year % QUARTER_CENTENNIAL == 0;
@@ -137,7 +137,7 @@ public class Date implements Comparable<Date>{
     /**
      * returns the Date in string form
      */
-    public String toString(){
+    public String toString() {
         String monthInStringForm = this.month / 10 + "" + this.month % 10;
         String dayInStringForm = this.day / 10 + "" + this.day % 10;
         String yearInStringForm = this.year + "";
@@ -149,7 +149,7 @@ public class Date implements Comparable<Date>{
      * testbed main
      * @param args - command line arguments
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
     }
 }

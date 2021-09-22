@@ -245,4 +245,12 @@ public class Collection {
 
         System.out.println(" ]");
     }
+
+    /**
+     * test bed main
+     * @param args - command line arguments
+     */
+    public static void main(String[] args) {
+
+    }
 }
