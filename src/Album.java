@@ -41,19 +41,28 @@ public class Album {
         return genre;
     }
 
-    @Override
     /**
-     * checks if this album is equal to the object passed in
-     * @param obj - the album to check against
+     * Getter for title
+     * @return - title
      */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Getter for artist
+     * @return artist
+     */
+    public String getArtist() {
+        return artist;
+    }
+
+    @Override
     public boolean equals(Object obj){
         return false;
     }
 
     @Override
-    /**
-     * returns the Album in string form
-     */
     public String toString(){
         return null;
     }

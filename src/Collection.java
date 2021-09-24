@@ -107,6 +107,11 @@ public class Collection {
      * @return - true if the album was successfully added, false if not
      */
     public boolean add(Album album) {
+        boolean isInCollection = this.find(album) != -1;
+        if(isInCollection){
+            return false;
+        }
+
         boolean notEnoughSpace = !(numAlbums < albums.length);
         if(notEnoughSpace){
             this.grow();
@@ -132,6 +137,8 @@ public class Collection {
             newAlbums[newAlbumsIndex] = currentAlbum;
             newAlbumsIndex++;
         }
+
+        this.albums = newAlbums;
     }
 
     /**
@@ -140,17 +147,18 @@ public class Collection {
      * @return - true if the album was successfully removed, false if not
      */
     public boolean remove(Album album) {
-        int albumIndex = this.find(album);
-
-        if(albumIndex == -1){
-            return false; // album is not in the collection
+        for(int i = 0; i < albums.length; i++) {
+            boolean hasSameTitle = albums[i].getTitle().equals(album.getTitle());
+            boolean hasSameArtist = albums[i].getArtist().equals(album.getArtist());
+            if (hasSameTitle && hasSameArtist) {
+                albums[i] = null;
+                numAlbums--;
+                this.cleanUp();
+                return true;
+            }
         }
 
-        albums[albumIndex] = null;
-        numAlbums--;
-        this.cleanUp();
-
-        return true;
+        return false;
     }
 
     /**
@@ -159,14 +167,23 @@ public class Collection {
      * @return - true if the album is available and can be lent out, false if not
      */
     public boolean lendingOut(Album album) {
-        album.setAvailability(false); // availability should be set to false anyway
-        boolean isAvailable = album.getAvailability();
+        boolean isAvailable = false;
+        boolean isInCollection = false;
 
-        if(isAvailable){
-            return true; // can be lent out
-        }else{
-            return false; // can not be lent out
+        for(Album alb: albums) {
+            boolean hasSameTitle = alb.getTitle().equals(album.getTitle());
+            boolean hasSameArtist = alb.getArtist().equals(album.getArtist());
+            if (hasSameTitle && hasSameArtist) {
+                isInCollection = true;
+                isAvailable = alb.getAvailability();
+                alb.setAvailability(false);
+            }
         }
+
+        if(isInCollection)
+            return isAvailable;
+        else
+            return false;
     }
 
     /**
@@ -175,33 +192,36 @@ public class Collection {
      * @return - true if the album was not available and can be returned, false if not
      */
     public boolean returnAlbum(Album album) {
-        album.setAvailability(true); // availability should be set to true anyway
-        boolean isAvailable = album.getAvailability();
+        boolean isNotAvailable = false;
+        boolean isInCollection = false;
 
-        if(isAvailable){
-            return false; // already returned
-        }else{
-            return true; // can be returned
+        for (Album alb : albums) {
+            boolean hasSameTitle = alb.getTitle().equals(album.getTitle());
+            boolean hasSameArtist = alb.getArtist().equals(album.getArtist());
+            if (hasSameTitle && hasSameArtist) {
+                isInCollection = true;
+                isNotAvailable = !alb.getAvailability();
+                alb.setAvailability(true);
+            }
         }
+
+        if(isInCollection)
+            return isNotAvailable;
+        else
+            return false;
     }
 
     /**
      * prints the list of albums
      */
     public void print() {
-        System.out.print("Collection: [ ");
+        System.out.println("*List of albums in the collection.");
 
         for(int i = 0; i < numAlbums; i++){
-            System.out.print(albums[i]);
-            int lastAlbumIndex = numAlbums - 1;
-            boolean isLastAlbum = i == lastAlbumIndex;
-
-            if(!isLastAlbum){
-                System.out.print(" , ");
-            }
+            System.out.print(albums[i].toString());
         }
 
-        System.out.println(" ]");
+        System.out.println("*End of list");
     }
 
     /**
@@ -210,19 +230,13 @@ public class Collection {
     public void printByReleaseDate() {
         Album[] sortedListByReleaseDate = this.sortByReleaseDate();
 
-        System.out.print("Collection by Release Date: [ ");
+        System.out.println("Album Collection by the release dates.");
 
         for(int i = 0; i < numAlbums; i++){
-            System.out.print(sortedListByReleaseDate[i]);
-            int lastAlbumIndex = numAlbums - 1;
-            boolean isLastAlbum = i == lastAlbumIndex;
-
-            if(!isLastAlbum){
-                System.out.print(" , ");
-            }
+            System.out.println(sortedListByReleaseDate[i].toString());
         }
 
-        System.out.println(" ]");
+        System.out.println("*End of list");
     }
 
     /**
@@ -231,19 +245,13 @@ public class Collection {
     public void printByGenre() {
         Album[] sortedListByGenre = this.sortByGenre();
 
-        System.out.print("Collection by Genre: [ ");
+        System.out.println("Album collection by genre.");
 
         for(int i = 0; i < numAlbums; i++){
-            System.out.print(sortedListByGenre[i]);
-            int lastAlbumIndex = numAlbums - 1;
-            boolean isLastAlbum = i == lastAlbumIndex;
-
-            if(!isLastAlbum){
-                System.out.print(" , ");
-            }
+            System.out.println(sortedListByGenre[i].toString());
         }
 
-        System.out.println(" ]");
+        System.out.println("*End of list");
     }
 
     /**

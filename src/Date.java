@@ -89,10 +89,7 @@ public class Date implements Comparable<Date>{
         int numDaysInThisMonth = isLeapYear(this.year) ? DAYS_OF_MONTH_IN_LEAP_YEAR[monthIndex] :
                 DAYS_OF_MONTH[monthIndex];
 
-        if(this.day < MINIMUM_DAY_VALUE || this.day > numDaysInThisMonth)
-            return false;
-
-        return true;
+        return this.day >= MINIMUM_DAY_VALUE && this.day <= numDaysInThisMonth;
     }
 
     /**
@@ -115,12 +112,6 @@ public class Date implements Comparable<Date>{
     }
 
     @Override
-    /**
-     * compares this Date to the date passed in
-     * @param date - the date passed in
-     * @return - a number indicating if the current date is before (<0), after (>0), or equal to (=0) the
-     * date passed in>
-     */
     public int compareTo(Date date) {
         if(this.year - date.year != 0){ // check year first
             return this.year - date.year;
@@ -134,9 +125,6 @@ public class Date implements Comparable<Date>{
     }
 
     @Override
-    /**
-     * returns the Date in string form
-     */
     public String toString() {
         String monthInStringForm = this.month / 10 + "" + this.month % 10;
         String dayInStringForm = this.day / 10 + "" + this.day % 10;
