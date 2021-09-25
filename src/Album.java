@@ -9,6 +9,14 @@ public class Album {
     private Date releaseDate;
     private boolean isAvailable;
 
+    public Album(String title, String artist, Genre genre, Date releaseDate){
+        this.title = title;
+        this.artist = artist;
+        this.genre = genre;
+        this.releaseDate = releaseDate;
+        this.isAvailable = true;
+    }
+
     /**
      * Getter for isAvailable
      * @return the availability of this album
@@ -59,12 +67,21 @@ public class Album {
 
     @Override
     public boolean equals(Object obj){
+        if ((this.artist.equals(obj.getArtist)) && this.title.equals(obj.getTitle)){
+            return true;
+        }
         return false;
     }
 
     @Override
     public String toString(){
-        return null;
+        if (this.getAvailability()){
+            String stringToReturn = "" + this.getTitle() + "::" + this.getArtist() + "::" + this.getGenre() + "::" + this.getReleaseDate() + "::is available" ;
+        }
+        else{
+            String stringToReturn = "" + this.getTitle() + "::" + this.getArtist() + "::" + this.getGenre() + "::" + this.getReleaseDate() + "::is not available" ;
+        }
+        return stringToReturn;
     }
 
     /**
