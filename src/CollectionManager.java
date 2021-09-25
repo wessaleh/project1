@@ -92,7 +92,7 @@ public class CollectionManager {
         String title = st.nextToken();
         String artist = st.nextToken();
 
-        Album albumToRemove = new Album(title, artist, Genre.Unknown, "dummy date");
+        Album albumToRemove = new Album(title, artist, Genre.Unknown, new Date(), true);
 
         boolean removed = albumCollection.remove(albumToRemove);
 
@@ -110,7 +110,7 @@ public class CollectionManager {
         String title = st.nextToken();
         String artist = st.nextToken();
 
-        Album albumToLend = new Album(title, artist, Genre.Unknown, "dummy date");
+        Album albumToLend = new Album(title, artist, Genre.Unknown, new Date(), true);
 
         boolean lentOut = this.albumCollection.lendingOut(albumToLend);
 
@@ -128,7 +128,7 @@ public class CollectionManager {
         String title = st.nextToken();
         String artist = st.nextToken();
 
-        Album albumToLend = new Album(title, artist, Genre.Unknown, "dummy date");
+        Album albumToLend = new Album(title, artist, Genre.Unknown, new Date(), true);
 
         boolean returned = this.albumCollection.returnAlbum(albumToLend);
 
