@@ -123,7 +123,7 @@ public class Album {
         System.out.print("Test 4: Should return a string representation of album => ");
         String albumString = alb1.toString();
 
-        boolean isCorrect = albumString.equals("fake_title_2::fake_artist::" + Genre.Pop + "::" + (new Date()).toString() + ":: + true");
+        boolean isCorrect = albumString.equals("fake_title_2::fake_artist::" + Genre.Pop + "::" + (new Date()).toString() + "::true");
 
         if(isCorrect)
             System.out.println("passed");
