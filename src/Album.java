@@ -10,12 +10,12 @@ public class Album {
     private boolean isAvailable;
 
     // let's add isAvailable as a parameter here
-    public Album(String title, String artist, Genre genre, Date releaseDate){
+    public Album(String title, String artist, Genre genre, Date releaseDate, boolean isAvailable){
         this.title = title;
         this.artist = artist;
         this.genre = genre;
         this.releaseDate = releaseDate;
-        this.isAvailable = true;
+        this.isAvailable = isAvailable;
     }
 
     /**
@@ -69,9 +69,9 @@ public class Album {
     @Override
     public boolean equals(Object obj){
         // cast obj to album
+        Album objToAlbum = (Album) obj;
 
-        // Do not use the getters I created, check each instance field
-        if ((this.artist.equals(obj.getArtist)) && this.title.equals(obj.getTitle)){
+        if ((this.artist.equals(objToAlbum.artist)) && this.title.equals(objToAlbum.title)){
             return true;
         }
         return false;
@@ -79,12 +79,11 @@ public class Album {
 
     @Override
     public String toString(){
-        // this should be a one liner. Don't use getters.
-        if (this.getAvailability()){
-            String stringToReturn = "" + this.getTitle() + "::" + this.getArtist() + "::" + this.getGenre() + "::" + this.getReleaseDate() + "::is available" ;
+        if (this.isAvailable){
+            String stringToReturn = "" + this.title() + "::" + this.artist() + "::" + this.genre + "::" + this.releaseDate + "::is available";
         }
         else{
-            String stringToReturn = "" + this.getTitle() + "::" + this.getArtist() + "::" + this.getGenre() + "::" + this.getReleaseDate() + "::is not available" ;
+            String stringToReturn = "" + this.title() + "::" + this.artist() + "::" + this.genre() + "::" + this.releaseDate() + "::is not available";
         }
         return stringToReturn;
     }
