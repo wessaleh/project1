@@ -79,12 +79,13 @@ public class Album {
 
     @Override
     public String toString(){
-        if (this.isAvailable){
-            String stringToReturn = "" + this.title() + "::" + this.artist() + "::" + this.genre + "::" + this.releaseDate + "::is available";
-        }
-        else{
-            String stringToReturn = "" + this.title() + "::" + this.artist() + "::" + this.genre() + "::" + this.releaseDate() + "::is not available";
-        }
+        String stringToReturn;
+
+        if (this.isAvailable)
+            stringToReturn = "" + this.title + "::" + this.artist + "::" + this.genre + "::" + this.releaseDate + "::is available";
+        else
+            stringToReturn = "" + this.title + "::" + this.artist + "::" + this.genre + "::" + this.releaseDate + "::is not available";
+
         return stringToReturn;
     }
 
@@ -111,7 +112,7 @@ public class Album {
         else
             System.out.println("failed");
 
-        System.out.println("Test 3: Should determine an album and a non-album to be unequal => ");
+        System.out.print("Test 3: Should determine an album and a non-album to be unequal => ");
         String non_alb = "fake_object";
 
         if(!alb1.equals(alb2))
@@ -122,7 +123,7 @@ public class Album {
         System.out.print("Test 4: Should return a string representation of album => ");
         String albumString = alb1.toString();
 
-        boolean isCorrect = albumString.equals("fake_title_2::fake_artist::" + Genre.Pop + "::" + (new Date()).toString() + "::true");
+        boolean isCorrect = albumString.equals("fake_title_2::fake_artist::" + Genre.Pop + "::" + (new Date()).toString() + "::is available");
 
         if(isCorrect)
             System.out.println("passed");
