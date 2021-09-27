@@ -42,13 +42,27 @@ public class CollectionManager {
 
         String command  = st.nextToken();
         switch(command) {
-            case "A" : addAlbumToCollection(st);
-            case "D" : deleteAlbumFromCollection(st);
-            case "L" : lendAlbum(st);
-            case "R" : returnAlbum(st);
-            case "P" : printCollection(st);
-            case "PD" : printCollectionByDate(st);
-            case "PG" : printCollectionByGenre(st);
+            case "A" :
+                addAlbumToCollection(st);
+                break;
+            case "D" :
+                deleteAlbumFromCollection(st);
+                break;
+            case "L" :
+                lendAlbum(st);
+                break;
+            case "R" :
+                returnAlbum(st);
+                break;
+            case "P" :
+                printCollection(st);
+                break;
+            case "PD" :
+                printCollectionByDate(st);
+                break;
+            case "PG" :
+                printCollectionByGenre(st);
+                break;
             default : System.out.println("Invalid command!");
         }
     }
@@ -62,10 +76,18 @@ public class CollectionManager {
         String artist = st.nextToken();
         Genre genre;
         switch(st.nextToken()){
-            case "Classical" : genre = Genre.Classical;
-            case "Country" : genre = Genre.Country;
-            case "Jazz" : genre = Genre.Jazz;
-            case "Pop" : genre = Genre.Pop;
+            case "classical" :
+                genre = Genre.Classical;
+                break;
+            case "country" :
+                genre = Genre.Country;
+                break;
+            case "jazz" :
+                genre = Genre.Jazz;
+                break;
+            case "pop" :
+                genre = Genre.Pop;
+                break;
             default : genre = Genre.Unknown;
         }
         Date releaseDate = new Date(st.nextToken());
@@ -94,10 +116,15 @@ public class CollectionManager {
 
         Album albumToRemove = new Album(title, artist, Genre.Unknown, new Date(), true);
 
+        if(!albumCollection.isInCollection(albumToRemove)) {
+            System.out.println(title + "::" + artist + " >> is not in the collection.");
+            return;
+        }
+
         boolean removed = albumCollection.remove(albumToRemove);
 
         if(removed)
-            System.out.println(title + "::" + artist + " >> deleted");
+            System.out.println(title + "::" + artist + " >> deleted.");
         else
             System.out.println(title + "::" + artist + " >> return cannot be completed.");
     }
@@ -117,7 +144,7 @@ public class CollectionManager {
         if(lentOut)
             System.out.println(title + "::" + artist + " >> lending out and set to not available.");
         else
-            System.out.println(title + "::" + artist + " >> is not available");
+            System.out.println(title + "::" + artist + " >> is not available.");
     }
 
     /**
@@ -128,9 +155,9 @@ public class CollectionManager {
         String title = st.nextToken();
         String artist = st.nextToken();
 
-        Album albumToLend = new Album(title, artist, Genre.Unknown, new Date(), true);
+        Album albumToReturn = new Album(title, artist, Genre.Unknown, new Date(), true);
 
-        boolean returned = this.albumCollection.returnAlbum(albumToLend);
+        boolean returned = this.albumCollection.returnAlbum(albumToReturn);
 
         if(returned)
             System.out.println(title + "::" + artist + " >> returning and set to available.");

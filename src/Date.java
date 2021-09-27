@@ -29,9 +29,10 @@ public class Date implements Comparable<Date>{
      * @param date - the date in string form
      */
     public Date(String date) {
-        this.month = Integer.parseInt(date.substring(0,2));
-        this.day = Integer.parseInt(date.substring(4,5));
-        this.year = Integer.parseInt(date.substring(7));
+        StringTokenizer st = new StringTokenizer(date, "/");
+        this.month = Integer.parseInt(st.nextToken());
+        this.day = Integer.parseInt(st.nextToken());
+        this.year = Integer.parseInt(st.nextToken());
     }
 
     /**
@@ -76,8 +77,13 @@ public class Date implements Comparable<Date>{
     public boolean isValid() {
         Date currentDate = new Date();
 
+        // validating that the date did already occur
+        if(this.compareTo(currentDate) > 0){
+            return false;
+        }
+
         // validating year
-        if(this.year < THE_EIGHTIES || this.year > currentDate.year)
+        if(this.year < THE_EIGHTIES)
             return false;
 
         // validating month
@@ -126,11 +132,7 @@ public class Date implements Comparable<Date>{
 
     @Override
     public String toString() {
-        String monthInStringForm = this.month / 10 + "" + this.month % 10;
-        String dayInStringForm = this.day / 10 + "" + this.day % 10;
-        String yearInStringForm = this.year + "";
-
-        return monthInStringForm + "/" + dayInStringForm + "/" + yearInStringForm;
+        return this.month + "/" + this.day + "/" + this.year;
     }
 
     /**

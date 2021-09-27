@@ -22,7 +22,10 @@ public class Collection {
      */
     private int find(Album album) {
         for(int i = 0; i < numAlbums; i++){
-            if(albums[i].equals(album)){
+            boolean hasSameTitle = albums[i].getTitle().equals(album.getTitle());
+            boolean hasSameArtist = albums[i].getArtist().equals(album.getArtist());
+
+            if(hasSameTitle && hasSameArtist){
                 return i;
             }
         }
@@ -188,9 +191,8 @@ public class Collection {
         boolean isNotAvailable = false;
         boolean isInCollection = false;
 
-        for (int i = 0; i < numAlbums; i++) {
+        for(int i = 0; i < numAlbums; i++) {
             Album alb = this.albums[i];
-
             boolean hasSameTitle = alb.getTitle().equals(album.getTitle());
             boolean hasSameArtist = alb.getArtist().equals(album.getArtist());
             if (hasSameTitle && hasSameArtist) {
@@ -210,10 +212,15 @@ public class Collection {
      * prints the list of albums
      */
     public void print() {
+        if(numAlbums == 0) {
+            System.out.println("The collection is empty!");
+            return;
+        }
+
         System.out.println("*List of albums in the collection.");
 
         for(int i = 0; i < numAlbums; i++){
-            System.out.print(albums[i].toString());
+            System.out.println(albums[i].toString());
         }
 
         System.out.println("*End of list");
@@ -223,9 +230,14 @@ public class Collection {
      * prints the list of albums sorted by release date
      */
     public void printByReleaseDate() {
+        if(numAlbums == 0) {
+            System.out.println("The collection is empty!");
+            return;
+        }
+
         this.sortByReleaseDate();
 
-        System.out.println("Album Collection by the release dates.");
+        System.out.println("*Album collection by the release dates.");
 
         for(int i = 0; i < numAlbums; i++){
             System.out.println(albums[i].toString());
@@ -238,15 +250,29 @@ public class Collection {
      * prints the list of albums sorted by Genre
      */
     public void printByGenre() {
+        if(numAlbums == 0) {
+            System.out.println("The collection is empty!");
+            return;
+        }
+
         this.sortByGenre();
 
-        System.out.println("Album collection by genre.");
+        System.out.println("*Album collection by genre.");
 
         for(int i = 0; i < numAlbums; i++){
             System.out.println(albums[i].toString());
         }
 
         System.out.println("*End of list");
+    }
+
+    /**
+     * Checks if the given album is in the collection
+     * @param album - the album to check
+     * @return true if the album is in the collection, false if not
+     */
+    public boolean isInCollection(Album album) {
+        return this.find(album) != -1;
     }
 
     /**
