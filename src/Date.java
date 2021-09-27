@@ -2,9 +2,9 @@ import java.util.Calendar;
 import java.util.StringTokenizer;
 
 /**
- * @author Wesam Saleh
  * This class stores all information for a date of the form "mm/dd/yy".
  * It can also check if the date is valid per certain specifications.
+ * @author Wesam Saleh
  */
 
 public class Date implements Comparable<Date>{
