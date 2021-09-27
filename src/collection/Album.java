@@ -1,6 +1,6 @@
 /**
- * @author Wesam Saleh
  * This class stores all information for albums.
+ * @author Wesam Saleh
  */
 
 public class Album {

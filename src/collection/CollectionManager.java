@@ -2,9 +2,9 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 /**
- * @author Wesam Saleh
  * Collection Manager runs a while loop to allow users to keep inputting commands for the Collection.
  * Users can add albums, remove albums, lend or return albums, and print the collection in different forms.
+ * @author Wesam Saleh
  */
 
 public class CollectionManager {

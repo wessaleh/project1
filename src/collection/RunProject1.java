@@ -1,6 +1,6 @@
 /**
- * @author Wesam Saleh
  * Driver for Collection class
+ * @author Wesam Saleh
  */
 
 public class RunProject1 {
