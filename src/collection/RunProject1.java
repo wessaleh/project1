@@ -2,7 +2,7 @@ package collection;
 
 /**
  * Driver for Collection class
- * @author Wesam Saleh
+ * @author Wesam Saleh, Najibullah Assadullah
  */
 
 public class RunProject1 {

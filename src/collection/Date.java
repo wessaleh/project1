@@ -142,6 +142,93 @@ public class Date implements Comparable<Date>{
      * @param args - command line arguments
      */
     public static void main(String[] args) {
+        Date wrongDay = new Date("12/00/2000");
+        Date wrongDay2 = new Date("12/32/2000");
+        Date wrongMonth = new Date("00/27/2000");
+        Date wrongMonth2 = new Date("13/27/2000");
+        Date wrongYear = new Date("12/27/0000");
+        Date tooEarlyDate = new Date("12/27/1979");
+        Date futureDate = new Date("12/27/2021");
+        Date notLeapYear = new Date("2/29/2001");
+        Date leapYear = new Date("2/29/2004");
+
+        Date correctDate = new Date("12/27/2000");
+        Date todaysDate = new Date();
+
+        System.out.println("Test 1: Should determine the next 8 dates to not be valid => ");
+        if (wrongDay.isValid()){
+            System.out.println("1)failed");
+        }
+        else{
+            System.out.println("1)passed");
+        }
+        if (wrongDay2.isValid()){
+            System.out.println("2)failed");
+        }
+        else{
+            System.out.println("2)passed");
+        }
+        if (wrongMonth.isValid()){
+            System.out.println("3)failed");
+        }
+        else{
+            System.out.println("3)passed");
+        }
+        if (wrongMonth2.isValid()){
+            System.out.println("4)failed");
+        }
+        else{
+            System.out.println("4)passed");
+        }
+        if (wrongYear.isValid()){
+            System.out.println("5)failed");
+        }
+        else{
+            System.out.println("5)passed");
+        }
+        if (tooEarlyDate.isValid()){
+            System.out.println("6)failed");
+        }
+        else{
+            System.out.println("6)passed");
+        }
+        if (futureDate.isValid()){
+            System.out.println("7)failed");
+        }
+        else{
+            System.out.println("7)passed");
+        }
+        if (notLeapYear.isValid()){
+            System.out.println("8)failed");
+        }
+        else{
+            System.out.println("8)passed");
+        }
+
+
+        System.out.println("Test 2: Should determine the next 3 dates to be valid => ");
+        if (correctDate.isValid()){
+            System.out.println("1)passed");
+        }
+        else{
+            System.out.println("1)failed");
+        }
+        if (leapYear.isValid()){
+            System.out.println("2)passed");
+        }
+        else{
+            System.out.println("2)failed");
+        }
+        if (todaysDate.isValid()){
+            System.out.println("3)passed");
+        }
+        else{
+            System.out.println("3)failed");
+        }
+
+
+        System.out.print("Test 3: Should print today's date => ");
+        System.out.println(todaysDate.toString());
 
     }
 }

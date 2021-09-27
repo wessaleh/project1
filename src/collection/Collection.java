@@ -4,7 +4,7 @@ package collection;
  * The Collection class stores a collection of albums initially with a capacity of 4.
  * Clients of this class can add, remove, lend, and return albums in the collection.
  * Clients may also print the collection sorted (by genre or release date) or unsorted.
- * @author Wesam Saleh
+ * @author Wesam Saleh, Najibullah Assadullah
  */
 
 public class Collection {

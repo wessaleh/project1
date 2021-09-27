@@ -2,7 +2,7 @@ package collection;
 
 /**
  * Enums for different genre types.
- * @author Wesam Saleh
+ * @author Wesam Saleh, Najibullah Assadullah
  */
 
 // Genre Enums

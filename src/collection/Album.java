@@ -2,7 +2,7 @@ package collection;
 
 /**
  * This class stores all information for albums.
- * @author Wesam Saleh
+ * @author Wesam Saleh, Najibullah Assadullah
  */
 
 public class Album {
