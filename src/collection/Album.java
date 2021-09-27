@@ -1,3 +1,5 @@
+package collection;
+
 /**
  * This class stores all information for albums.
  * @author Wesam Saleh

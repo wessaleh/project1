@@ -1,3 +1,5 @@
+package collection;
+
 /**
  * Driver for Collection class
  * @author Wesam Saleh

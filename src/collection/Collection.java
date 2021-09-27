@@ -1,3 +1,5 @@
+package collection;
+
 /**
  * The Collection class stores a collection of albums initially with a capacity of 4.
  * Clients of this class can add, remove, lend, and return albums in the collection.
