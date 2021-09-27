@@ -1,15 +1,23 @@
 /**
  * @author Wesam Saleh
+ * This class stores all information for albums.
  */
 
 public class Album {
-    private String title;
-    private String artist;
-    private Genre genre; // enums
-    private Date releaseDate;
+    private final String title;
+    private final String artist;
+    private final Genre genre; // enums
+    private final Date releaseDate;
     private boolean isAvailable;
 
-    // let's add isAvailable as a parameter here
+    /**
+     * Constructor for Album class
+     * @param title - the title of the album
+     * @param artist - the artist
+     * @param genre - the genre
+     * @param releaseDate - the release date
+     * @param isAvailable - the availability of the album
+     */
     public Album(String title, String artist, Genre genre, Date releaseDate, boolean isAvailable){
         this.title = title;
         this.artist = artist;
@@ -66,6 +74,11 @@ public class Album {
         return artist;
     }
 
+    /**
+     * Checks if the given object is equal to this album
+     * @param obj - the album to check
+     * @return true if the two albums are equal, false if not
+     */
     @Override
     public boolean equals(Object obj){
         if(obj == null)
@@ -73,12 +86,15 @@ public class Album {
 
         Album objToAlbum = (Album) obj;
 
-        if ((this.artist.equals(objToAlbum.artist)) && this.title.equals(objToAlbum.title)){
-            return true;
-        }
-        return false;
+        boolean hasSameArtist = this.artist.equals(objToAlbum.artist);
+        boolean hasSameTitle = this.title.equals(objToAlbum.title);
+        return hasSameArtist && hasSameTitle;
     }
 
+    /**
+     * Converts the album to string form
+     * @return the string representation of the album
+     */
     @Override
     public String toString(){
         String stringToReturn;
@@ -115,7 +131,6 @@ public class Album {
             System.out.println("failed");
 
         System.out.print("Test 3: Should determine an album and a non-album to be unequal => ");
-        String non_alb = "fake_object";
 
         if(!alb1.equals(alb2))
             System.out.println("passed");
@@ -125,7 +140,7 @@ public class Album {
         System.out.print("Test 4: Should return a string representation of album => ");
         String albumString = alb1.toString();
 
-        boolean isCorrect = albumString.equals("fake_title_2::fake_artist::" + Genre.Pop + "::" + (new Date()).toString() + "::is available");
+        boolean isCorrect = albumString.equals("fake_title_2::fake_artist::" + Genre.Pop + "::" + (new Date()) + "::is available");
 
         if(isCorrect)
             System.out.println("passed");
@@ -161,14 +176,14 @@ public class Album {
 
         System.out.print("Test 9: Should get title correctly => ");
 
-        if(alb1.getTitle() == "fake_title_2")
+        if(alb1.getTitle().equals("fake_title_2"))
             System.out.println("passed");
         else
             System.out.println("failed");
 
         System.out.print("Test 10: Should get artist correctly => ");
 
-        if(alb1.getArtist() == "fake_artist")
+        if(alb1.getArtist().equals("fake_artist"))
             System.out.println("passed");
         else
             System.out.println("failed");

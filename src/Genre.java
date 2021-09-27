@@ -1,5 +1,6 @@
 /**
  * @author Wesam Saleh
+ * Enums for different genre types.
  */
 
 // Genre Enums

@@ -1,9 +1,11 @@
-/**
- * @author Wesam Saleh
- */
-
 import java.util.Scanner;
 import java.util.StringTokenizer;
+
+/**
+ * @author Wesam Saleh
+ * Collection Manager runs a while loop to allow users to keep inputting commands for the Collection.
+ * Users can add albums, remove albums, lend or return albums, and print the collection in different forms.
+ */
 
 public class CollectionManager {
     StringTokenizer st;
@@ -41,29 +43,15 @@ public class CollectionManager {
         st = new StringTokenizer(input, ",");
 
         String command  = st.nextToken();
-        switch(command) {
-            case "A" :
-                addAlbumToCollection(st);
-                break;
-            case "D" :
-                deleteAlbumFromCollection(st);
-                break;
-            case "L" :
-                lendAlbum(st);
-                break;
-            case "R" :
-                returnAlbum(st);
-                break;
-            case "P" :
-                printCollection(st);
-                break;
-            case "PD" :
-                printCollectionByDate(st);
-                break;
-            case "PG" :
-                printCollectionByGenre(st);
-                break;
-            default : System.out.println("Invalid command!");
+        switch (command) {
+            case "A" -> addAlbumToCollection(st);
+            case "D" -> deleteAlbumFromCollection(st);
+            case "L" -> lendAlbum(st);
+            case "R" -> returnAlbum(st);
+            case "P" -> printCollection();
+            case "PD" -> printCollectionByDate();
+            case "PG" -> printCollectionByGenre();
+            default -> System.out.println("Invalid command!");
         }
     }
 
@@ -74,22 +62,14 @@ public class CollectionManager {
     private void addAlbumToCollection(StringTokenizer st) {
         String title = st.nextToken();
         String artist = st.nextToken();
-        Genre genre;
-        switch(st.nextToken()){
-            case "classical" :
-                genre = Genre.Classical;
-                break;
-            case "country" :
-                genre = Genre.Country;
-                break;
-            case "jazz" :
-                genre = Genre.Jazz;
-                break;
-            case "pop" :
-                genre = Genre.Pop;
-                break;
-            default : genre = Genre.Unknown;
-        }
+        Genre genre = switch (st.nextToken()) {
+            case "classical" -> Genre.Classical;
+            case "country" -> Genre.Country;
+            case "jazz" -> Genre.Jazz;
+            case "pop" -> Genre.Pop;
+            default -> Genre.Unknown;
+        };
+
         Date releaseDate = new Date(st.nextToken());
 
         if(releaseDate.isValid()) {
@@ -97,9 +77,9 @@ public class CollectionManager {
             boolean added = albumCollection.add(albumToAdd);
 
             if(added)
-                System.out.println(albumToAdd.toString() + " >> added.");
+                System.out.println(albumToAdd + " >> added.");
             else
-                System.out.println(albumToAdd.toString() + " >> is already in the collection.");
+                System.out.println(albumToAdd + " >> is already in the collection.");
 
         }else{
             System.out.println("Invalid Date!");
@@ -165,15 +145,24 @@ public class CollectionManager {
             System.out.println(title + "::" + artist + " >> return cannot be completed.");
     }
 
-    private void printCollection(StringTokenizer st){
+    /**
+     * executes the print command
+     */
+    private void printCollection(){
         this.albumCollection.print();
     }
 
-    private void printCollectionByDate(StringTokenizer st){
+    /**
+     * Executes the print by date command
+     */
+    private void printCollectionByDate(){
         this.albumCollection.printByReleaseDate();
     }
 
-    private void printCollectionByGenre(StringTokenizer st){
+    /**
+     * Executes the print by genre command
+     */
+    private void printCollectionByGenre(){
         this.albumCollection.printByGenre();
     }
 }

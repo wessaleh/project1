@@ -1,5 +1,8 @@
 /**
  * @author Wesam Saleh
+ * The Collection class stores a collection of albums.
+ * Clients of this class can add, remove, lend, and return albums in the collection.
+ * Clients may also print the collection sorted (by genre or release date) or unsorted.
  */
 
 public class Collection {
@@ -39,8 +42,10 @@ public class Collection {
     private void grow() {
         Album[] newAlbumsList = new Album[albums.length + 4];
 
-        for(int i = 0; i < albums.length; i++){
+        int i = 0;
+        while (i < numAlbums) {
             newAlbumsList[i] = albums[i];
+            i++;
         }
 
         albums = newAlbumsList;
@@ -48,7 +53,6 @@ public class Collection {
 
     /**
      * Sorts albums list by release date
-     * @return albums list sorted by release date
      */
     private void sortByReleaseDate() {
         int earliestAlbumIndex;
@@ -73,7 +77,6 @@ public class Collection {
 
     /**
      * Sorts albums list by genre
-     * @return albums list sorted by genre
      */
     private void sortByGenre(){
         int minimumAlbumIndex;

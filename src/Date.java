@@ -1,16 +1,16 @@
-/**
- * Date class that stores a given date in the format "mm/dd/yy"
- * This date class can also check if the date is valid according to certain specifications
- * @author Wesam Saleh
- */
-
 import java.util.Calendar;
 import java.util.StringTokenizer;
 
+/**
+ * @author Wesam Saleh
+ * This class stores all information for a date of the form "mm/dd/yy".
+ * It can also check if the date is valid per certain specifications.
+ */
+
 public class Date implements Comparable<Date>{
-    private int year;
-    private int month;
-    private int day;
+    private final int year;
+    private final int month;
+    private final int day;
 
     private static final int QUADRENNIAL = 4;
     private static final int CENTENNIAL = 100;
