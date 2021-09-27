@@ -68,7 +68,9 @@ public class Album {
 
     @Override
     public boolean equals(Object obj){
-        // cast obj to album
+        if(obj == null)
+            return false;
+
         Album objToAlbum = (Album) obj;
 
         if ((this.artist.equals(objToAlbum.artist)) && this.title.equals(objToAlbum.title)){
